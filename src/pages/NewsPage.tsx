@@ -8,7 +8,7 @@ import { INews } from "../models/INews";
 
 export const NewsPage = () => {
 	const dispatch = useAppDispatch();
-	const { news } = useAppSelector((state) => state.newsSlice);
+	const { news } = useAppSelector((state) => state.newsReducer);
 
 	useEffect(() => {
 		dispatch(fetchNews());

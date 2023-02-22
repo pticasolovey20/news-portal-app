@@ -1,5 +1,10 @@
 import React from "react";
+import { useAuth } from "../hooks/useAuth";
+
+import { Navigate } from "react-router-dom";
 
 export const ProfilePage = () => {
-	return <div>ProfilePage</div>;
+	const { isAuth } = useAuth();
+
+	return <div>{isAuth ? <div>PROFILE PAGE</div> : <Navigate to="/" />}</div>;
 };

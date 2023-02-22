@@ -1,6 +1,8 @@
-import React from "react";
-import { Routes, Route } from "react-router-dom";
+import { useEffect } from "react";
+import { useAppDispatch } from "./hooks/redux";
+import { setUserAction } from "./store/slices/userSlice";
 
+import { Routes, Route } from "react-router-dom";
 import { Box, Container } from "@mui/material";
 import { Header } from "./components/Header";
 import { HomePage } from "./pages/HomePage";
@@ -10,8 +12,24 @@ import { AuthPage } from "./pages/AuthPage";
 import { Footer } from "./components/Footer";
 
 export const App = () => {
+	const dispatch = useAppDispatch();
+
+	useEffect(() => {
+		if (!localStorage.getItem("user")) return;
+
+		const user = JSON.parse(localStorage.getItem("user")!);
+
+		if (user) {
+			dispatch(
+				setUserAction({
+					email: user.email,
+				})
+			);
+		}
+	}, [dispatch]);
+
 	return (
-		<Box>
+		<Box sx={{ display: "flex", flexDirection: "column", height: "100vh" }}>
 			<Header />
 			<Container sx={{ marginTop: "70px", flex: 1 }} disableGutters>
 				<Routes>

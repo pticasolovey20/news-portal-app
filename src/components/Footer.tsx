@@ -10,6 +10,7 @@ export const Footer = () => {
 				justifyContent: "center",
 				width: "100%",
 				height: "60px",
+				padding: "20px",
 				backgroundColor: "#1976d2",
 			}}
 		>

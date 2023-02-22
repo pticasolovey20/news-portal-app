@@ -1,6 +1,10 @@
 import React from "react";
+import { useAuth } from "../hooks/useAuth";
+import { useAppDispatch } from "../hooks/redux";
+import { removeUserAction } from "../store/slices/userSlice";
+
 import { styled, Box, AppBar, Toolbar, Typography, Button } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export const Header = () => {
 	const StyledButton = styled(Button)({
@@ -9,6 +13,19 @@ export const Header = () => {
 		color: "#fff",
 		padding: "5px 10px",
 	});
+
+	const { isAuth } = useAuth();
+	const dispatch = useAppDispatch();
+	const navigate = useNavigate();
+
+	const handleLogin = () => {
+		navigate("/auth");
+	};
+
+	const handleLogout = () => {
+		dispatch(removeUserAction());
+		localStorage.removeItem("user");
+	};
 
 	return (
 		<Box>
@@ -27,11 +44,15 @@ export const Header = () => {
 						<Link to="/profile">
 							<StyledButton>PROFILE</StyledButton>
 						</Link>
-						<Link to="/auth">
-							<StyledButton color="inherit" variant="outlined">
+						{isAuth ? (
+							<StyledButton color="inherit" variant="outlined" onClick={handleLogout}>
+								Logout
+							</StyledButton>
+						) : (
+							<StyledButton color="inherit" variant="outlined" onClick={handleLogin}>
 								Login
 							</StyledButton>
-						</Link>
+						)}
 					</Box>
 				</Toolbar>
 			</AppBar>
