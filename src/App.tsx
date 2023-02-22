@@ -1,22 +1,27 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 
-import { Container } from "@mui/material";
-import { Box } from "@mui/system";
+import { Box, Container } from "@mui/material";
+import { Header } from "./components/Header";
 import { HomePage } from "./pages/HomePage";
 import { NewsPage } from "./pages/NewsPage";
 import { ProfilePage } from "./pages/ProfilePage";
+import { AuthPage } from "./pages/AuthPage";
+import { Footer } from "./components/Footer";
 
 export const App = () => {
 	return (
-		<Container>
-			<Box>
+		<Box>
+			<Header />
+			<Container sx={{ marginTop: "70px", flex: 1 }} disableGutters>
 				<Routes>
 					<Route path="/" element={<HomePage />} />
 					<Route path="/news" element={<NewsPage />} />
 					<Route path="/profile" element={<ProfilePage />} />
+					<Route path="/auth" element={<AuthPage />} />
 				</Routes>
-			</Box>
-		</Container>
+			</Container>
+			<Footer />
+		</Box>
 	);
 };
