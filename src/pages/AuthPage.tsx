@@ -43,7 +43,14 @@ export const AuthPage = () => {
 	};
 
 	return (
-		<Container maxWidth="xs" sx={{ marginTop: "300px" }}>
+		<Container maxWidth="xs" sx={{ marginTop: "200px" }}>
+			<Box
+				sx={{ padding: "30px", borderRadius: "20px", backgroundColor: "rgba(0,0,0,0.2)" }}
+				mb={3}
+			>
+				<Typography align="center">EMAIL: admin@gmail.com</Typography>
+				<Typography align="center">PASSWORD: 123456</Typography>
+			</Box>
 			<form onSubmit={handleSubmit}>
 				<TextFieldComponent
 					label="Email"
