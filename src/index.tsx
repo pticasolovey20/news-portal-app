@@ -9,6 +9,8 @@ import { App } from "./App";
 import { store } from "./store/store";
 import { myTheme } from "./theme/myTheme";
 
+import { LoadingPage } from "./pages/LoadingPage";
+
 import "./firebase";
 import "./services/i18next";
 import "./styles/styles.scss";
@@ -17,7 +19,7 @@ const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement)
 root.render(
 	<BrowserRouter>
 		<Provider store={store}>
-			<Suspense fallback={<div>Loading</div>}>
+			<Suspense fallback={<LoadingPage />}>
 				<ThemeProvider theme={myTheme}>
 					<App />
 				</ThemeProvider>

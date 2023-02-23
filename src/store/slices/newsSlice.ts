@@ -10,9 +10,14 @@ interface NewsState {
 
 export const fetchNews = createAsyncThunk("news/fetchNews", async (amount: number, thunkAPI) => {
 	try {
-		const url = `https://newsapi.org/v2/everything?sources=bbc-news&pageSize=${amount}&apiKey=9a21ba41b3e84b6da5234445d62e89dd`;
-		const { data } = await axios.get(url);
-		return data.articles;
+		const newsStorage = JSON.parse(localStorage.getItem("news")!);
+		if (newsStorage) {
+			const url = `https://newsapi.org/v2/everything?q=Apple&pageSize=${amount}&sortBy=publishedAt&apiKey=507a6c8ef4154b21931b37bdf243e48d`;
+			const { data } = await axios.get(url);
+			return data.articles;
+		} else {
+			return null;
+		}
 	} catch (error) {
 		if (error instanceof AxiosError) {
 			return thunkAPI.rejectWithValue(error.message);
@@ -29,7 +34,12 @@ const initialState = {
 const newsSlice = createSlice({
 	name: "news",
 	initialState,
-	reducers: {},
+	reducers: {
+		deleteNewsAction(state, action: PayloadAction<string>) {
+			const idToRemove = action.payload;
+			state.news = state.news.filter((item) => item.title !== idToRemove);
+		},
+	},
 	extraReducers: {
 		[fetchNews.pending.type]: (state) => {
 			state.loading = true;
@@ -37,7 +47,10 @@ const newsSlice = createSlice({
 
 		[fetchNews.fulfilled.type]: (state, action: PayloadAction<INews[]>) => {
 			state.loading = false;
-			state.news = action.payload;
+			const newNews = action.payload.filter(
+				(newsItem) => !state.news.some((item) => item.title === newsItem.title)
+			);
+			state.news = [...state.news, ...newNews];
 			state.error = "";
 		},
 
@@ -48,4 +61,5 @@ const newsSlice = createSlice({
 	},
 });
 
+export const { deleteNewsAction } = newsSlice.actions;
 export default newsSlice.reducer;

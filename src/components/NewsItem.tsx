@@ -1,4 +1,7 @@
 import React from "react";
+import { useAppDispatch } from "../hooks/redux";
+import { deleteNewsAction } from "../store/slices/newsSlice";
+
 import { Box, Typography } from "@mui/material";
 import ClearIcon from "@mui/icons-material/Clear";
 
@@ -12,12 +15,20 @@ interface PropsParams {
 }
 
 export const NewsItem: React.FC<PropsParams> = ({ item }) => {
+	const dispatch = useAppDispatch();
+
+	const handleDeleteNews = (id: string) => {
+		dispatch(deleteNewsAction(id));
+	};
+
+	const fallbackSrc = "https://via.placeholder.com/220";
+
 	return (
 		<Box
 			sx={{
 				display: "flex",
 				flexDirection: "column",
-				flexBasis: "374px",
+				width: "374px",
 				height: "400px",
 				gap: "5px",
 				padding: "15px",
@@ -28,11 +39,14 @@ export const NewsItem: React.FC<PropsParams> = ({ item }) => {
 				cursor: "pointer",
 			}}
 		>
-			<Box sx={{ display: "flex" }}>
+			<Box sx={{ display: "flex", justifyContent: "space-between" }}>
 				<Typography fontSize={18}>{item.title}</Typography>
-				<ClearIcon color="error" />
+				<ClearIcon color="error" onClick={() => handleDeleteNews(item.title)} />
 			</Box>
-			<img src={item.urlToImage} alt={item.title} />
+			<img
+				src={item.publishedAt !== null ? item.urlToImage : fallbackSrc}
+				alt={item.urlToImage}
+			/>
 			<Typography align="right">{prepareDate(item.publishedAt)}</Typography>
 		</Box>
 	);
