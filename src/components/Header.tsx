@@ -2,8 +2,9 @@ import React from "react";
 import { useAuth } from "../hooks/useAuth";
 import { useAppDispatch } from "../hooks/redux";
 import { removeUserAction } from "../store/slices/userSlice";
+import { useTranslation } from "react-i18next";
 
-import { styled, Box, AppBar, Toolbar, Typography, Button } from "@mui/material";
+import { styled, Box, AppBar, Toolbar, Typography, Button, ButtonGroup } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
 
 export const Header = () => {
@@ -17,6 +18,7 @@ export const Header = () => {
 	const { isAuth } = useAuth();
 	const dispatch = useAppDispatch();
 	const navigate = useNavigate();
+	const { t, i18n } = useTranslation();
 
 	const handleLogin = () => {
 		navigate("/auth");
@@ -27,30 +29,43 @@ export const Header = () => {
 		localStorage.removeItem("user");
 	};
 
+	const handleChangeLanguage = (language: string) => {
+		i18n.changeLanguage(language);
+		console.log(language);
+	};
+
 	return (
 		<Box>
 			<AppBar position="fixed">
 				<Toolbar>
-					<Typography variant="h6" sx={{ flex: 1 }}>
-						NEWS PORTAL
-					</Typography>
+					<Box sx={{ display: "flex", flex: 1, gap: "20px", alignItems: "center" }}>
+						<Typography variant="h6">{t("pageTitle")}</Typography>
+						<ButtonGroup variant="outlined" color="inherit">
+							<Button onClick={() => handleChangeLanguage("ua")}>
+								{t("uaButton")}
+							</Button>
+							<Button onClick={() => handleChangeLanguage("en")}>
+								{t("enButton")}
+							</Button>
+						</ButtonGroup>
+					</Box>
 					<Box display="flex" gap="10px">
 						<Link to="/">
-							<StyledButton>HOME</StyledButton>
+							<StyledButton>{t("homeButton")}</StyledButton>
 						</Link>
 						<Link to="/news">
-							<StyledButton>NEWS</StyledButton>
+							<StyledButton>{t("newsButton")}</StyledButton>
 						</Link>
 						<Link to="/profile">
-							<StyledButton>PROFILE</StyledButton>
+							<StyledButton>{t("profileButton")}</StyledButton>
 						</Link>
 						{isAuth ? (
 							<StyledButton color="inherit" variant="outlined" onClick={handleLogout}>
-								Logout
+								{t("logoutButton")}
 							</StyledButton>
 						) : (
 							<StyledButton color="inherit" variant="outlined" onClick={handleLogin}>
-								Login
+								{t("loginButton")}
 							</StyledButton>
 						)}
 					</Box>

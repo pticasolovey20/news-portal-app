@@ -1,0 +1,13 @@
+{
+	"pageTitle": "NEWS PORTAL",
+	"uaButton": "UA",
+	"enButton": "EN",
+	"homeButton": "HOME",
+	"newsButton": "NEWS",
+	"profileButton": "PROFILE",
+	"loginButton": "LOGIN",
+	"logoutButton": "LOGOUT",
+	"emailLabel": "Email",
+	"passwordLabel": "Password",
+	"footer": "Its my test task for the company AlterEGO"
+}

@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../hooks/redux";
 import { setUserAction } from "../store/slices/userSlice";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { useTranslation } from "react-i18next";
 
 import { Container, Box, Typography, Button } from "@mui/material";
 import { TextFieldComponent } from "../components/TextFieldComponent";
@@ -14,6 +15,7 @@ export const AuthPage = () => {
 
 	const dispatch = useAppDispatch();
 	const navigate = useNavigate();
+	const { t } = useTranslation();
 
 	const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
@@ -53,13 +55,13 @@ export const AuthPage = () => {
 			</Box>
 			<form onSubmit={handleSubmit}>
 				<TextFieldComponent
-					label="Email"
+					label={t("emailLabel")}
 					type="email"
 					onChange={handleUsernameChange}
 					value={email}
 				/>
 				<TextFieldComponent
-					label="Password"
+					label={t("passwordLabel")}
 					type="password"
 					onChange={handlePasswordChange}
 					value={password}
@@ -71,7 +73,7 @@ export const AuthPage = () => {
 				)}
 				<Box>
 					<Button fullWidth variant="contained" type="submit">
-						LOGIN
+						{t("loginButton")}
 					</Button>
 				</Box>
 			</form>
