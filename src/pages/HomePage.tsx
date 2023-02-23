@@ -1,5 +1,5 @@
-import React from "react";
+import { Container } from "@mui/material";
 
 export const HomePage = () => {
-	return <div>HOME PAGE</div>;
+	return <Container>HOME PAGE</Container>;
 };

@@ -7,6 +7,7 @@
 	"profileButton": "PROFILE",
 	"loginButton": "LOGIN",
 	"logoutButton": "LOGOUT",
+	"loadButton": "LOAD MORE",
 	"emailLabel": "Email",
 	"passwordLabel": "Password",
 	"footer": "Its my test task for the company AlterEGO"

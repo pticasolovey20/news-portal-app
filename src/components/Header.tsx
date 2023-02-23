@@ -1,4 +1,3 @@
-import React from "react";
 import { useAuth } from "../hooks/useAuth";
 import { useAppDispatch } from "../hooks/redux";
 import { removeUserAction } from "../store/slices/userSlice";
@@ -6,12 +5,13 @@ import { useTranslation } from "react-i18next";
 
 import { styled, Box, AppBar, Toolbar, Typography, Button, ButtonGroup } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
+import { myTheme } from "../theme/myTheme";
 
 export const Header = () => {
 	const StyledButton = styled(Button)({
 		fontSize: 17,
 		letterSpacing: 1,
-		color: "#fff",
+		color: myTheme.palette.primary.contrastText,
 		padding: "5px 10px",
 	});
 
@@ -31,7 +31,6 @@ export const Header = () => {
 
 	const handleChangeLanguage = (language: string) => {
 		i18n.changeLanguage(language);
-		console.log(language);
 	};
 
 	return (

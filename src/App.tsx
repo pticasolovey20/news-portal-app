@@ -18,7 +18,6 @@ export const App = () => {
 		if (!localStorage.getItem("user")) return;
 
 		const user = JSON.parse(localStorage.getItem("user")!);
-
 		if (user) {
 			dispatch(
 				setUserAction({
@@ -29,9 +28,9 @@ export const App = () => {
 	}, [dispatch]);
 
 	return (
-		<Box sx={{ display: "flex", flexDirection: "column", height: "100vh" }}>
+		<Box sx={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}>
 			<Header />
-			<Container sx={{ marginTop: "70px", flex: 1 }} disableGutters>
+			<Container sx={{ marginTop: "64px", flex: 1 }} disableGutters>
 				<Routes>
 					<Route path="/" element={<HomePage />} />
 					<Route path="/news" element={<NewsPage />} />

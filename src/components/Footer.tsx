@@ -1,7 +1,7 @@
-import React from "react";
 import { useTranslation } from "react-i18next";
 
 import { Box, Typography } from "@mui/material";
+import { myTheme } from "../theme/myTheme";
 
 export const Footer = () => {
 	const { t } = useTranslation();
@@ -15,7 +15,7 @@ export const Footer = () => {
 				width: "100%",
 				height: "60px",
 				padding: "20px",
-				backgroundColor: "#1976d2",
+				backgroundColor: myTheme.palette.primary.main,
 			}}
 		>
 			<Typography color="#fff">{t("footer").toUpperCase()}</Typography>

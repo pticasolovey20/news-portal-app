@@ -1,10 +1,10 @@
-import React from "react";
 import { useAuth } from "../hooks/useAuth";
 
 import { Navigate } from "react-router-dom";
+import { Container, Box } from "@mui/material";
 
 export const ProfilePage = () => {
 	const { isAuth } = useAuth();
 
-	return <div>{isAuth ? <div>PROFILE PAGE</div> : <Navigate to="/" />}</div>;
+	return <Container>{isAuth ? <Box>PROFILE PAGE</Box> : <Navigate to="/" />}</Container>;
 };

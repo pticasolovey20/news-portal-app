@@ -8,10 +8,9 @@ interface NewsState {
 	news: INews[];
 }
 
-export const fetchNews = createAsyncThunk("news/fetchNews", async (param, thunkAPI) => {
+export const fetchNews = createAsyncThunk("news/fetchNews", async (amount: number, thunkAPI) => {
 	try {
-		const url =
-			"https://newsapi.org/v2/top-headlines?sources=bbc-news&apiKey=c15397867cbd43a9baf80b226e78792a";
+		const url = `https://newsapi.org/v2/everything?q=Apple&pageSize=${amount}&apiKey=9a21ba41b3e84b6da5234445d62e89dd`;
 		const { data } = await axios.get(url);
 		return data.articles;
 	} catch (error) {

@@ -5,6 +5,8 @@ import ClearIcon from "@mui/icons-material/Clear";
 import { INews } from "../models/INews";
 import { prepareDate } from "../services/prepareDate";
 
+import { myTheme } from "../theme/myTheme";
+
 interface PropsParams {
 	item: INews;
 }
@@ -19,7 +21,10 @@ export const NewsItem: React.FC<PropsParams> = ({ item }) => {
 				height: "400px",
 				gap: "5px",
 				padding: "15px",
-				boxShadow: "5px 5px 10px rgba(0,0,0,0.5)",
+				color: myTheme.palette.primary.contrastText,
+				borderRadius: "10px",
+				boxShadow: "5px 5px 10px rgba(0,0,0,0.3)",
+				backgroundColor: myTheme.palette.primary.main,
 				cursor: "pointer",
 			}}
 		>
