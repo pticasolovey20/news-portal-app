@@ -21,8 +21,6 @@ export const NewsItem: React.FC<PropsParams> = ({ item }) => {
 		dispatch(deleteNewsAction(id));
 	};
 
-	const fallbackSrc = "https://via.placeholder.com/220";
-
 	return (
 		<Box
 			sx={{
@@ -43,10 +41,7 @@ export const NewsItem: React.FC<PropsParams> = ({ item }) => {
 				<Typography fontSize={18}>{item.title}</Typography>
 				<ClearIcon color="error" onClick={() => handleDeleteNews(item.title)} />
 			</Box>
-			<img
-				src={item.publishedAt !== null ? item.urlToImage : fallbackSrc}
-				alt={item.urlToImage}
-			/>
+			<img src={item.urlToImage} alt={item.urlToImage} />
 			<Typography align="right">{prepareDate(item.publishedAt)}</Typography>
 		</Box>
 	);

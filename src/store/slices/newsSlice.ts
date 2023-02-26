@@ -12,9 +12,9 @@ export const fetchNews = createAsyncThunk("news/fetchNews", async (amount: numbe
 	try {
 		const newsStorage = JSON.parse(localStorage.getItem("news")!);
 		if (newsStorage) {
-			const url = `https://newsapi.org/v2/everything?q=Apple&pageSize=${amount}&sortBy=publishedAt&apiKey=507a6c8ef4154b21931b37bdf243e48d`;
+			const url = `https://63fb565d7a045e192b6748ea.mockapi.io/news?limit=${amount}&page=1`;
 			const { data } = await axios.get(url);
-			return data.articles;
+			return data;
 		} else {
 			return null;
 		}
