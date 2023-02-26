@@ -3,7 +3,7 @@ import { EmptyPage } from "./EmptyPage";
 
 export const HomePage = () => {
 	return (
-		<Container>
+		<Container sx={{ paddingTop: "20px" }}>
 			<EmptyPage />
 		</Container>
 	);

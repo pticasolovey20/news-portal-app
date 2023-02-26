@@ -8,7 +8,7 @@ export const ProfilePage = () => {
 	const { isAuth } = useAuth();
 
 	return (
-		<Container>
+		<Container sx={{ paddingTop: "20px" }}>
 			{isAuth ? (
 				<Box>
 					<EmptyPage />
